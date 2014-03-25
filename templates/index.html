@@ -1,0 +1,33 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+{{super()}}
+    <link rel="stylesheet" href="{{url_for('.static', filename='css/style.css')}}">
+{% endblock %}
+
+{% block title %}Hashwall{% endblock %}
+{% block scripts %}
+    {{super()}}
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="http:////cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            var socket = io.connect('http://' + document.domain + ':' + location.port + '/hashwall');
+            socket.on('my response', function(json) {
+		var data = jQuery.parseJSON(json);
+		$('#profile_image').hide().html('<img src="' + data.profile_image + '">').fadeIn(1000);
+                $('#text').hide().html(data.text).fadeIn(1000);
+		$('#user').hide().html('<a href="https://twitter.com/' + data.username + '/status/' + data.id + '">' + '@' + data.username + '</a>').fadeIn(1000);
+		$('body').css('background-image', 'url("' + data.background_image + '")')
+            });
+      	});
+    </script>
+{% endblock %}
+{% block content %}
+<div class="container text-center">
+	<br />
+	<div id="profile_image"></div>
+	<h1><div id="text"></div></h1>
+	<div id="user"></div>
+</div>
+{% endblock %}
