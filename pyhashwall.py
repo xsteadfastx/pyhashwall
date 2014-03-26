@@ -109,7 +109,7 @@ def hashwall_disconnect():
 
 
 if __name__ == '__main__':
-    if len(sys.argv) <= 2:
+    if len(sys.argv) <= 1:
         print 'USAGE: python pyhashwall.py #foo #bar #blubb'
         sys.exit()
 
