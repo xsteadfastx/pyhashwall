@@ -9,8 +9,8 @@ import time
 import json
 import threading
 import requests
+import sys
 from io import open
-from docopt import docopt
 from urlparse import urlsplit
 from flask import Flask, render_template, session, request
 from flask_bootstrap import Bootstrap
@@ -76,7 +76,7 @@ def listen():
     auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
 
     stream = tweepy.Stream(auth, listener)
-    stream.filter(track=[HASHTAG])
+    stream.filter(track=HASHTAGS)
 
 
 def spit_out():
@@ -111,8 +111,11 @@ def hashwall_disconnect():
 
 
 if __name__ == '__main__':
-    arguments = docopt(__doc__)
-    HASHTAG = arguments['<hashtag>']
+    if len(sys.argv) <= 2:
+        print 'USAGE: python pyhashwall.py #foo #bar #blubb'
+        sys.exit()
+
+    HASHTAGS = sys.argv[1:]
 
     config = {}
     execfile('pyhashwall.conf', config)

@@ -5,7 +5,6 @@ Jinja2==2.7.2
 MarkupSafe==0.19
 Werkzeug==0.9.4
 argparse==1.2.1
-docopt==0.6.1
 gevent==1.0
 gevent-socketio==0.3.6
 gevent-websocket==0.9.3
