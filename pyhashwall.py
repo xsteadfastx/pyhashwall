@@ -1,7 +1,3 @@
-'''
-Usage:
-    pyhashwall.py <hashtag>
-'''
 import os
 import re
 import tweepy
