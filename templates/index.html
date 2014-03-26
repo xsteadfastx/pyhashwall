@@ -18,7 +18,12 @@
 		$('#profile_image').hide().html('<img src="' + data.profile_image + '">').fadeIn(1000);
                 $('#text').hide().html(data.text).fadeIn(1000);
 		$('#user').hide().html('<a href="https://twitter.com/' + data.username + '/status/' + data.id + '">' + '@' + data.username + '</a>').fadeIn(1000);
-		$('body').css('background-image', 'url("' + data.background_image + '")')
+		if(data.use_background_image == true) {
+		    $('body').css('background-image', 'url("' + data.background_image + '")');
+		}
+		else {
+                    $('body').css('background-color', '#' + data.background_color);
+	        }
             });
       	});
     </script>

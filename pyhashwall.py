@@ -53,6 +53,8 @@ class StListener(tweepy.StreamListener):
                              'id': status.id_str,
                              'username': status.user.screen_name,
                              'profile_image': profile_image,
+                             'background_color': status.user.profile_background_color,
+                             'use_background_image': status.user.profile_use_background_image,
                              'background_image': background_image})
         if output not in waiting_line:
             waiting_line.append(output)
