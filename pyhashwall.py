@@ -39,7 +39,7 @@ def requests_image(file_url):
 def delete_images():
     for f in os.listdir('static/images/'):
         os.remove('static/images/' + f)
-    threading.Timer(120, delete_images).start()
+    threading.Timer(600, delete_images).start()
 
 
 class StListener(tweepy.StreamListener):
